@@ -46,7 +46,8 @@ values = list(ordened_data.values())
 # Line Graph
 plt.figure(figsize=(7,2.5))
 plt.plot(datas, values, marker='o', linestyle='-', color='blue')
-
+# Linha de meta fixa (hardcoded)
+plt.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
 plt.title("Hábitos ao longo do tempo")
 plt.xlabel("Data")
 plt.ylabel("Valor")
@@ -56,6 +57,8 @@ plt.show()
 
 # Bar Graph
 plt.bar(datas, values, color='blue')
+# Linha de meta fixa (hardcoded)
+plt.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
 plt.title("Hábitos ao longo do tempo")
 plt.xlabel("Data")
 plt.ylabel("Valor")
