@@ -11,10 +11,16 @@ def load_json():
         with open(JSON_PATH, "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
+    else:
+        print(f"JSON file not found at {JSON_PATH}. Please ensure the file exists.")
+        return None
 
 data = load_json()
 data_formatted = {}
 
+if not data:
+    print("No data found in the JSON file.")
+    exit()
 for key, _list in data.items():
     count = 0
     if key == "_habits_list":
@@ -32,10 +38,13 @@ for key, _list in data.items():
                 count += 1
                 data_formatted[key] = count
 
-datas = list(data_formatted.keys())
-values = list(data_formatted.values())
+ordened_data = {key: data_formatted[key] for key in sorted(data_formatted)}
 
-plt.figure(figsize=(10,5))
+datas = list(ordened_data.keys())
+values = list(ordened_data.values())
+
+# Line Graph
+plt.figure(figsize=(7,2.5))
 plt.plot(datas, values, marker='o', linestyle='-', color='blue')
 
 plt.title("Hábitos ao longo do tempo")
@@ -43,5 +52,15 @@ plt.xlabel("Data")
 plt.ylabel("Valor")
 plt.grid(True)
 plt.tight_layout()
+plt.show()
+
+# Bar Graph
+plt.bar(datas, values, color='blue')
+plt.title("Hábitos ao longo do tempo")
+plt.xlabel("Data")
+plt.ylabel("Valor")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.grid(axis='y')
 
 plt.show()
