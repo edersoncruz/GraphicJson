@@ -42,28 +42,26 @@ ordened_data = {key: data_formatted[key] for key in sorted(data_formatted)}
 
 datas = list(ordened_data.keys())
 values = list(ordened_data.values())
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 4))  # 1 linha, 2 colunas
 
-# Line Graph
-plt.figure(figsize=(7,2.5))
-plt.plot(datas, values, marker='o', linestyle='-', color='blue')
-# Linha de meta fixa (hardcoded)
-plt.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
-plt.title("Hábitos ao longo do tempo")
-plt.xlabel("Data")
-plt.ylabel("Valor")
-plt.grid(True)
+# Gráfico de linha
+ax1.plot(datas, values, marker='o', linestyle='-', color='blue')
+ax1.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
+ax1.set_title("Hábitos ao longo do tempo (Linha)")
+ax1.set_xlabel("Data")
+ax1.set_ylabel("Valor")
+ax1.grid(True)
+ax1.legend()
+
+# Gráfico de barras
+ax2.bar(datas, values, color='blue')
+ax2.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
+ax2.set_title("Hábitos ao longo do tempo (Barras)")
+ax2.set_xlabel("Data")
+ax2.set_ylabel("Valor")
+ax2.set_xticklabels(datas, rotation=45)
+ax2.grid(axis='y')
+ax2.legend()
+
 plt.tight_layout()
-plt.show()
-
-# Bar Graph
-plt.bar(datas, values, color='blue')
-# Linha de meta fixa (hardcoded)
-plt.axhline(y=11, color='red', linestyle='--', label='Meta (11)')
-plt.title("Hábitos ao longo do tempo")
-plt.xlabel("Data")
-plt.ylabel("Valor")
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.grid(axis='y')
-
 plt.show()
